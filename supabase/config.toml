@@ -1,1 +1,4 @@
 project_id = "oipodfskxfrwvzenuoak"
+
+[functions.fetch-security-news]
+verify_jwt = false
