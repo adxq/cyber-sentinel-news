@@ -21,14 +21,14 @@ serve(async (req) => {
 
     console.log('Fetching cybersecurity news from NewsAPI...');
 
-    // Fetch cybersecurity-related news from reputable sources
-    // Keywords related to cybersecurity topics + source-specific terms
-    const query = '(cybersecurity OR hacking OR malware OR "data breach" OR ransomware OR vulnerability OR exploit OR phishing) AND (security OR cyber OR threat)';
-    
     // Target domains for quality cybersecurity news
-    const domains = 'bleepingcomputer.com,darkreading.com,thehackernews.com,packetstormsecurity.com,wired.com,arstechnica.com,securityweek.com,krebsonsecurity.com';
+    // These are dedicated security sites so we use a broad query
+    const domains = 'bleepingcomputer.com,darkreading.com,thehackernews.com,packetstormsecurity.com,securityweek.com,krebsonsecurity.com,threatpost.com';
     
-    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&domains=${domains}&language=en&sortBy=publishedAt&pageSize=30`;
+    // Simple query - the domains are already security-focused
+    const query = 'security OR cyber OR hack OR malware OR breach OR vulnerability';
+    
+    const url = `https://newsapi.org/v2/everything?domains=${domains}&q=${encodeURIComponent(query)}&language=en&sortBy=publishedAt&pageSize=50`;
 
     const response = await fetch(url, {
       headers: {
